@@ -17,7 +17,7 @@ With these three component parameters, the framework calculates the following: g
 
 * **Gurobi:** Our code uses the Gurobi solver (http://www.gurobi.com/) which is available for free to academics. It can be swapped with any linear program solver, although this requires significant effort in rewriting both scripts and java code (especially the analysis tools offered). After installation, please ensure that you can globally run it from the command line as `gurobi_cl <a linear program.lp>`. It is also possible to run it on a remote server by swapping `localLpRun.sh` for `remoteLpRun.sh` in your script (be sure to edit `remoteLpRun.sh` to your own setup).
 
-* **Python:** Some functionality (e.g. maximum weight matching, Xpander graph generation) uses Python. Both Python 2 and 3 are supported. Be sure you can globally run `python <some python script.py>`.
+* **Python:** Some functionality (e.g. maximum weight matching, Xpander graph generation) uses Python. Both Python 2 and 3 are supported. Be sure you can globally run `python <some python script.py>`, and have the modules *networkx* and *numpy* installed with your respective distribution.
 
 * **Gnuplot:** Some scripts have been written to nicely plot results. This is not a required dependency. Be sure you can globally run `gnuplot <some plot script.plt>`. Preferably version 4.4 or higher.
 
@@ -91,21 +91,21 @@ The parameters given should be as follows:
 
 The `*` is a placeholder for the `ethz.ch.topobench` package in the upcoming sections. TopoBench can be easily extended with a new graph, path evaluator or traffic mode.
 
-##### Adding a new Graph
+#### Adding a new Graph
 
 1. Let X be the graph name
 2. Write a new class `*.graph.graphs.XGraph` extending `*.topobench.graph.Graph`
 3. Write a new generator `*.graph.graphs.generators.XGraphGenerator` implementing `*.graph.graphs.generators.GraphGenerator` that parses the command line arguments
 4. Add it to the `Type` enumerator, and the switches in `getGraphTypeRepresentation`, `getGraphType` and `select` methods of `*.graph.graphs.GraphSelector`
 
-##### Adding a new Path Evaluator
+#### Adding a new Path Evaluator
 
 1. Let X be the path evaluator name
 2. Write a new class `*.graph.patheval.XPathEvaluator` extending `*.graph.patheval.PathEvaluator`
 3. Write a new generator `*.graph.patheval.generators.XPathEvaluatorGenerator` implementing `*.graph.patheval.generators.PathEvaluatorGenerator` that parses the command line arguments
 4. Add it to the `Type` enumerator, and the switches in `getPathEvaluatorRepresentation`, `getPathEvaluator` and `select` methods of `*.graph.patheval.PathEvaluatorSelector`
 
-##### Adding a new Traffic Mode
+#### Adding a new Traffic Mode
 
 1. Let X be the traffic mode name
 2. Write a new class `*.graph.traffic.XTraffic` extending `*.graph.traffic.Traffic`
