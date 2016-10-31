@@ -1,0 +1,4 @@
+python_version=?;  	# Python version, either 2 or 3
+sort_command=?;     # Sorting command, either C:/cygwin/bin/sort for Windows+Cygwin or sort for Linux
+k_upper_bound=?;    # Maximum value allowed for the K in the Linear Program, typical 25 is good enough
+silent_command=?;   # Whether commands should be execute silent, either 0 or 1, normally 1
