@@ -1,0 +1,7 @@
+This folder is used for the communication of different processes.
+Examples are between the Java linear program printer and the Gurobi
+solver, the maximum weight matching being performed in Python, the
+generation of Xpander graphs in Python, and the analysis of the final
+flow model and its corresponding solution.
+
+Do not, under any circumstances, delete this folder.

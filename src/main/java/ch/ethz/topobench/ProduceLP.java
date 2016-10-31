@@ -97,16 +97,11 @@ class ProduceLP {
                 "Path Evaluator:    " + pathEvaluatorType + "\n"
         );
 
-        System.out.println("\nCLEANING TEMPORARY FOLDERS");
+        System.out.println("\nCLEANING TEMPORARY FOLDER");
 
         // Performing complete clean-up
-        new File("temp/final").mkdirs();
-        new File("temp/graph").mkdirs();
-        new File("temp/lp").mkdirs();
-        new File("temp/traffic").mkdirs();
-        new File("temp/cache").mkdirs();
-        removeFilesIn("temp/final", "temp/graph", "temp/lp", "temp/traffic");
-        System.out.println(" > Temporary folders have been cleaned.");
+        removeFilesIn("temp");
+        System.out.println(" > Temporary folder has been cleaned.");
 
         // Generate graph
         System.out.println("\nGRAPH GENERATION");
@@ -129,10 +124,10 @@ class ProduceLP {
         // Print topology information
         System.out.println("\nPRINTING");
         System.out.print(" > Printing graph information...");
-        PrinterTrafficPairs.print("temp/final/traffic_pairs.txt", traffic);
-        new PrinterGraph(graph).print("temp/final/topology.txt");
-        new PrinterPathLengths(graph).print("temp/final/node_path_lengths.txt");
-        PrinterRun.print("temp/final/run.info", allArgs);
+        PrinterTrafficPairs.print("temp/traffic_pairs.txt", traffic);
+        new PrinterGraph(graph).print("temp/topology.txt");
+        new PrinterPathLengths(graph).print("temp/node_path_lengths.txt");
+        PrinterRun.print("temp/run.info", allArgs);
         System.out.println(" done.");
 
         // Print the linear program
@@ -141,7 +136,10 @@ class ProduceLP {
     }
 
     /**
-     * Deletion of a folder and all its sub-folders
+     * Deletion of possibly multiple folder and
+     * files within those folders (not recursively).
+     *
+     * Skips .gitignore and README files.
      *
      * Adapted from:
      * http://stackoverflow.com/questions/7768071/how-to-delete-directory-content-in-java
@@ -154,7 +152,7 @@ class ProduceLP {
             File[] files = folder.listFiles();
             if (files != null) {
                 for (File f : files) {
-                    if (f.isFile()) {
+                    if (f.isFile() && !f.getName().equals(".gitignore") && !f.getName().equals("README")) {
                         f.delete();
                     }
                 }

@@ -23,7 +23,7 @@ public class AnalyzeObjective {
             BufferedWriter out = new BufferedWriter(fileStreamOut);
 
             // Open input stream
-            FileInputStream fileStream = new FileInputStream("temp/final/vector.sol");
+            FileInputStream fileStream = new FileInputStream("temp/vector.sol");
             BufferedReader br = new BufferedReader(new InputStreamReader(fileStream));
 
             // Simply read in the server pairs

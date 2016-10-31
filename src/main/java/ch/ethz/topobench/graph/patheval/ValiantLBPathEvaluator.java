@@ -45,8 +45,8 @@ public class ValiantLBPathEvaluator extends PathEvaluator {
         System.out.print(" > KVLB - Calculating shortest path using Dijkstra's algorithm... ");
 
         // Prepare graph
-        GraphCompatibility.printGraphToFile(g, "temp/traffic/valiant-lb-converted.txt");
-        edu.asu.emit.algorithm.graph.Graph graph = new edu.asu.emit.algorithm.graph.Graph("temp/traffic/valiant-lb-converted.txt");
+        GraphCompatibility.printGraphToFile(g, "temp/valiant-lb-converted.txt");
+        edu.asu.emit.algorithm.graph.Graph graph = new edu.asu.emit.algorithm.graph.Graph("temp/valiant-lb-converted.txt");
         DijkstraShortestPathAlg dijkstraAlg = new DijkstraShortestPathAlg(graph);
 
         // Pre-calculate shortest paths

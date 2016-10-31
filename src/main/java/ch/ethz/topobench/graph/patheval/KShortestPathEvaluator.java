@@ -42,8 +42,8 @@ public class KShortestPathEvaluator extends PathEvaluator {
         }
 
         // Convert internal graph version to that of library
-        GraphCompatibility.printGraphToFile(g, "temp/traffic/k-shortest-path-graph-converted.txt");
-        edu.asu.emit.algorithm.graph.Graph graph = new edu.asu.emit.algorithm.graph.Graph("temp/traffic/k-shortest-path-graph-converted.txt");
+        GraphCompatibility.printGraphToFile(g, "temp/k-shortest-path-graph-converted.txt");
+        edu.asu.emit.algorithm.graph.Graph graph = new edu.asu.emit.algorithm.graph.Graph("temp/k-shortest-path-graph-converted.txt");
 
         // Batch process initialize yen's algorithm
         YenTopKShortestPathsAlg yenAlg = new YenTopKShortestPathsAlg(graph);
@@ -61,11 +61,11 @@ public class KShortestPathEvaluator extends PathEvaluator {
         // If it is the preparation run, for a large k determine the paths,
         // such that they can be used for lower k
         if (prep) {
-            printKShortestPathEdges("temp/cache/k-shortest-valid-edges-cache.txt", g, yenAlg, graph, k);
+            printKShortestPathEdges("temp/k-shortest-valid-edges-cache.txt", g, yenAlg, graph, k);
         }
 
         // Load from cache using k as threshold
-        loadKShortestPathEdges("temp/cache/k-shortest-valid-edges-cache.txt", k);
+        loadKShortestPathEdges("temp/k-shortest-valid-edges-cache.txt", k);
 
         System.out.println(" done.");
 

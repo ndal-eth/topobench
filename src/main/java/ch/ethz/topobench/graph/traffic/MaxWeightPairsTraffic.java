@@ -47,8 +47,8 @@ public class MaxWeightPairsTraffic extends Traffic {
         graph.calculateShortestPaths();
 
         // Do a full maximum weight pair matching among all weighed nodes
-        printMaxWeightProblem("temp/traffic/weighed_node_distances.txt", false, null);
-        ArrayList<TrafficPair> allPairs = trafficWeightPairsUsingDistanceFile("temp/traffic/weighed_node_distances.txt");
+        printMaxWeightProblem("temp/weighed_node_distances.txt", false, null);
+        ArrayList<TrafficPair> allPairs = trafficWeightPairsUsingDistanceFile("temp/weighed_node_distances.txt");
 
         // Take the top fraction of nodes in the ordered maximum weight pairs
         boolean[] inFraction = new boolean[numNodesWithWeight];
@@ -81,8 +81,8 @@ public class MaxWeightPairsTraffic extends Traffic {
         }
 
         // Do a maximum weight pair matching among only the weighed nodes in the fraction
-        printMaxWeightProblem("temp/traffic/weighed_node_distances_mw_fraction.txt", true, inFraction);
-        ArrayList<TrafficPair> fractionPairs = trafficWeightPairsUsingDistanceFile("temp/traffic/weighed_node_distances_mw_fraction.txt");
+        printMaxWeightProblem("temp/weighed_node_distances_mw_fraction.txt", true, inFraction);
+        ArrayList<TrafficPair> fractionPairs = trafficWeightPairsUsingDistanceFile("temp/weighed_node_distances_mw_fraction.txt");
 
         ArrayList<TrafficPair> ls = new ArrayList<>();
         for (TrafficPair p : fractionPairs) {
@@ -123,13 +123,13 @@ public class MaxWeightPairsTraffic extends Traffic {
     private ArrayList<TrafficPair> trafficWeightPairsUsingDistanceFile(String filename) {
 
         // Execute python script that does maximum weight matching
-        Main.runCommand("python python/maxWeight" + Main.PYTHON_VERSION + ".py " + filename + " temp/traffic/max_weight_matching.txt");
+        Main.runCommand("python python/maxWeight" + Main.PYTHON_VERSION + ".py " + filename + " temp/max_weight_matching.txt");
 
         // Sort the maximum weight pairs
-        Main.runCommand(Main.SORT_COMMAND + " -nr -k3 -k1 temp/traffic/max_weight_matching.txt -o temp/traffic/max_weight_matching_sorted.txt");
+        Main.runCommand(Main.SORT_COMMAND + " -nr -k3 -k1 temp/max_weight_matching.txt -o temp/max_weight_matching_sorted.txt");
 
         // Retrieve and return the traffic pairs from the output
-        return trafficPairsFromWeightFile("temp/traffic/max_weight_matching_sorted.txt");
+        return trafficPairsFromWeightFile("temp/max_weight_matching_sorted.txt");
 
     }
 

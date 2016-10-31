@@ -49,16 +49,16 @@ public class AnalyzeSolution {
 
         // Copy files
         System.out.print("> Copying files...");
-        Main.runCommand("cp temp/final/run.info " + ANALYSIS_FOLDER, false);
-        Main.runCommand("cp temp/final/vector.sol " + ANALYSIS_FOLDER, false);
-        Main.runCommand("cp temp/final/topology.txt " + ANALYSIS_FOLDER, false);
-        Main.runCommand("cp temp/final/traffic_pairs.txt " + ANALYSIS_FOLDER, false);
-        Main.runCommand("cp temp/final/node_path_lengths.txt " + ANALYSIS_FOLDER, false);
+        Main.runCommand("cp temp/run.info " + ANALYSIS_FOLDER, false);
+        Main.runCommand("cp temp/vector.sol " + ANALYSIS_FOLDER, false);
+        Main.runCommand("cp temp/topology.txt " + ANALYSIS_FOLDER, false);
+        Main.runCommand("cp temp/traffic_pairs.txt " + ANALYSIS_FOLDER, false);
+        Main.runCommand("cp temp/node_path_lengths.txt " + ANALYSIS_FOLDER, false);
         if (trafficMode == TrafficSelector.TrafficMode.MAX_WEIGHT_PAIRS || trafficMode == TrafficSelector.TrafficMode.MIN_WEIGHT_PAIRS) {
-            Main.runCommand("cp temp/traffic/weighed_node_distances.txt " + ANALYSIS_FOLDER, false);
-            Main.runCommand("cp temp/traffic/weighed_node_distances_mw_fraction.txt " + ANALYSIS_FOLDER, false);
-            Main.runCommand("cp temp/traffic/max_weight_matching.txt " + ANALYSIS_FOLDER, false);
-            Main.runCommand("cp temp/traffic/max_weight_matching_sorted.txt " + ANALYSIS_FOLDER, false);
+            Main.runCommand("cp temp/weighed_node_distances.txt " + ANALYSIS_FOLDER, false);
+            Main.runCommand("cp temp/weighed_node_distances_mw_fraction.txt " + ANALYSIS_FOLDER, false);
+            Main.runCommand("cp temp/max_weight_matching.txt " + ANALYSIS_FOLDER, false);
+            Main.runCommand("cp temp/max_weight_matching_sorted.txt " + ANALYSIS_FOLDER, false);
         }
         System.out.println(" done.\n");
 
@@ -80,7 +80,7 @@ public class AnalyzeSolution {
         }
 
         // Print objective
-        AnalyzeObjective.printAnalysis("temp/final/objective.txt");
+        AnalyzeObjective.printAnalysis("temp/objective.txt");
         AnalyzeObjective.printAnalysis(ANALYSIS_FOLDER + "/objective.txt");
 
     }

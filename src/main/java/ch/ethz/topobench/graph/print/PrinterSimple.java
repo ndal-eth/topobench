@@ -40,7 +40,7 @@ public class PrinterSimple {
         try {
 
             // Open output stream
-            FileWriter fileStream = new FileWriter("temp/lp/program.lp");
+            FileWriter fileStream = new FileWriter("temp/program.lp");
             BufferedWriter out = new BufferedWriter(fileStream);
 
             // Shortly print the number of edges and traffic pairs

@@ -51,17 +51,16 @@ public class XpanderGraph extends Graph {
         try {
 
             // Write parameters
-            new File("temp/graph").mkdirs();
-            FileWriter fileStreamIn = new FileWriter("temp/graph/xpander_in.temp");
+            FileWriter fileStreamIn = new FileWriter("temp/xpander_in.temp");
             BufferedWriter out = new BufferedWriter(fileStreamIn);
             out.write(this.d + "\n" + this.k + "\n" + Main.getRandomSeed());
             out.close();
 
             // Run python script
-            runCommand("python python/xpanderGen" + Main.PYTHON_VERSION + ".py temp/graph/xpander_in.temp temp/graph/xpander_out.temp");
+            runCommand("python python/xpanderGen" + Main.PYTHON_VERSION + ".py temp/xpander_in.temp temp/xpander_out.temp");
 
             // Open file stream
-            FileInputStream fileStreamOut = new FileInputStream("temp/graph/xpander_out.temp");
+            FileInputStream fileStreamOut = new FileInputStream("temp/xpander_out.temp");
             BufferedReader br = new BufferedReader(new InputStreamReader(fileStreamOut));
 
             // Simply read in the server pairs

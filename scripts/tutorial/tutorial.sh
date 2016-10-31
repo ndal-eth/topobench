@@ -97,7 +97,7 @@ do
 			cd -
 
 			# Add to list of received flow values
-			flowVal=$(cat ../../temp/final/objective.txt)
+			flowVal=$(cat ../../temp/objective.txt)
 			echo "$flowVal" >> flowtmp_tutorial
 			
 	done

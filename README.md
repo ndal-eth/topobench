@@ -37,13 +37,13 @@ Although the software is designed for Linux, it is also possible to run it on Wi
 
 2. Your editor should now be loading the dependencies (JUnit, Mockito, Apache Commons CLI);
 
-3. Run all tests in the project, make sure that they all pass;
+3. Run all tests in the project, make sure that they all pass; this can be done using the following maven command: `mvn compile test`
 
 4. Build the executable `TopoBench.jar` by using the following maven command: `mvn clean compile assembly:single`
 
-5. Run `scripts/tutorial/tutorial.sh`. It shows what it is doing in the terminal. If it goes very fast, kill it and look at the errors it produces;
+5. Within `scripts/tutorial`, run `bash tutorial.sh`. It shows what it is doing in the terminal. If it produces exceptions, kill the process and investigate;
 
-6. Run `gnuplot plot/tutorial/figure_tutorial.plt`. It should generate a graph file in PDF format: `plot/tutorial/figure_tutorial.pdf`. The plot should look like a declining line.
+6. Within `plot/tutorial`, run `gnuplot figure_tutorial.plt`. It should generate a graph file in PDF format: `plot/tutorial/figure_tutorial.pdf`. The plot should look like a declining line.
 
 ## The Executable TopoBench.jar
 

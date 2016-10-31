@@ -68,7 +68,7 @@ public class PrinterMCFFairCondensed {
         try {
 
             // Open stream
-            FileWriter fileStream = new FileWriter("temp/lp/program.lp");
+            FileWriter fileStream = new FileWriter("temp/program.lp");
             BufferedWriter out = new BufferedWriter(fileStream);
 
             // Put the switch traffic pairs (representing server level matrix)
@@ -101,7 +101,7 @@ public class PrinterMCFFairCondensed {
 
             // Map each flow identifier to its corresponding source-destination pair (f, t)
             FlowID[] allFlowIDs = new FlowID[numFlows];
-            Writer outputFlowIdMap = new BufferedWriter(new FileWriter("temp/lp/flow_id_map"));
+            Writer outputFlowIdMap = new BufferedWriter(new FileWriter("temp/flow_id_map"));
             int currentID = 0;
             for (int f = 0; f < numNodes; f++) {
                 for (int t = 0; t < numNodes; t++) {
@@ -115,7 +115,7 @@ public class PrinterMCFFairCondensed {
             outputFlowIdMap.close();
 
             // For every link (u, v) with capacity cap print link capacities
-            Writer outputLinkCaps = new BufferedWriter(new FileWriter("temp/lp/link_caps"));
+            Writer outputLinkCaps = new BufferedWriter(new FileWriter("temp/link_caps"));
             for (int u = 0; u < numNodes; u++) {
                 for (Link link : adjacencyList[u]) {
                     int cap = link.getLinkCapacity();
