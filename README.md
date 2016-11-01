@@ -117,9 +117,9 @@ The `*` is a placeholder for the `ethz.ch.topobench` package in the upcoming sec
 ## Organization
 
 #### Contributors
-* Ankit Singla (ankit.singla@ethz.ch)
-* Simon Kassing (kassings@ethz.ch)
-* Sangeetha Abdu Jyothi (abdujyo2@illinois.edu)
+* Ankit Singla (ankit.singla (at) ethz [dot] ch)
+* Simon Kassing (kassings (at) ethz [dot] ch)
+* Sangeetha Abdu Jyothi (abdujyo2 (at) illinois [dot] edu)
 * Chi-Yao Hong
 * Lucian Popa
 * P. Brighten Godfrey
