@@ -19,7 +19,7 @@ MYMAINPATH="../../"
 ###
 
 seed=1			# Set to 0 for random
-lpt=SIMPLE      # SIMPLE is fast for dense traffic matrices
+lpt=MCFFC       # SIMPLE is fast for dense traffic matrices
                 # MCFFC is fast for sparse traffic matrices
 
 ###################################
@@ -31,7 +31,7 @@ topology=JF	# JF = JellyFish,
 			# XP = Xpander
 			
 linkFailRate=0.0	# Link failure rate [0.0, 1.0]
-switches=231		# Number of switches
+switches=100		# Number of switches
 svrports=10			
 netports=10
 totport=`expr $svrports + $netports`
@@ -55,7 +55,7 @@ slack=-1			# Slack value [0,inf], set -1 for infinite slack
 ### TRAFFIC GENERATOR SPECIFIC PARAMETERS
 ###
 
-tmode=AT1	# RPP = Rand. Permutation Pairs,
+tmode=MAWP	# RPP = Rand. Permutation Pairs,
 			# ATA = All-to-All, 
 			# AT1 = All-to-One, 
 			# STR = Stride, 
@@ -82,9 +82,9 @@ do
 		java -jar TopoBench.jar \
 		-mode PRODUCE -seed $seed -lpt $lpt \
 		-gt $topology -pe $patheval -tm $tmode \
-		-switches $switches -switchports 20 -netports $netports \
+		-switches $switches -switchports $totport -netports $netports \
 		-slack $slack \
-		# -tfr $trafficFrac
+		-tfr $trafficFrac
 		
 		# Execute solver
 		sh scripts/localLpRun.sh	# Local: scripts/localLpRun.sh, Remote: scripts/remoteLpRun.sh

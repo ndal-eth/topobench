@@ -46,7 +46,7 @@ public class XpanderGraphTest {
         ).getResult();
 
         // Create expectation
-        int expectedK = (int) Math.ceil( (((double) desiredN) / ((double) s)) / ((double) (d + 1)));
+        int expectedK = (int) Math.ceil( ((double) desiredN) / ((double) (d + 1)));
         int expectedN = expectedK * (d + 1);
 
         // Base statistics should match

@@ -25,11 +25,11 @@ public class XpanderGraph extends Graph {
      *
      * @param d     Network ports per switch (graph degree)
      * @param s     Server ports per switch
-     * @param n     Number of servers desired
+     * @param n     Number of switches desired
      *
      */
     public XpanderGraph(int d, int s, int n) {
-        super("Xpander", ((int) Math.ceil((((double) n) / ((double) s)) / ((double) (d + 1)))) * (d + 1), s);
+        super("Xpander", ((int) Math.ceil(((double) n) / ((double) (d + 1))) * (d + 1)), s);
 
         // OTHER OPTION: USING FIXED K, DO MULTIPLE LIFTS
         // To be satisfied: d * k^lifts >= n
@@ -38,7 +38,7 @@ public class XpanderGraph extends Graph {
 
         // Set parameters
         this.d = d;
-        this.k = (int) Math.ceil((((double) n) / ((double) s)) / ((double) (d + 1)));
+        this.k = (int) Math.ceil(((double) n) / ((double) (d + 1)));
         this.s = s;
 
         // Setup uniform weight

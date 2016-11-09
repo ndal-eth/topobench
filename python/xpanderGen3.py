@@ -31,8 +31,9 @@ def random_k_lift(d, k):
                 mat[dst,src] = 1
 
     eig,vecs = LA.eig(mat)
+    eig = np.abs(eig)
     eig.sort()
-    if eig[-1] < get_spectral_gap(d):
+    if eig[-2] < get_spectral_gap(d):
         return random_k_lift(d,k)
 
     return mat
