@@ -71,7 +71,7 @@ public class AllToAllFractionTraffic extends Traffic {
 
         // Log creation
         System.out.println(" > Generated All-to-All server traffic pairs");
-        System.out.println(" > A random fraction " + (int) (100.0 * fraction) + "% of " + numNodes + " nodes was selected");
+        System.out.println(" > A random fraction " + (int) (100.0 * fraction) + "% of " + numNodesWithWeight + " weighed nodes was selected");
         System.out.println(" > The node fraction is thus of size: " + fractionSize + " nodes.");
         System.out.println(" > Among these a total of " + ls.size() + " server pairs were ultimately generated.");
 

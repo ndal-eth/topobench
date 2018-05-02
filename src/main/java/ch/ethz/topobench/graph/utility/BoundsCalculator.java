@@ -10,26 +10,27 @@ package ch.ethz.topobench.graph.utility;
 public class BoundsCalculator {
 
     public static void main(String[] args) {
-        for (int N = 9; N <= 90; N += 9) {
-            // int N = 6;
-            int d = 5;
-            int serversPerSwitch = 10;
-            System.out.println("Average PL min. bound: " + avgPathLengthMinBound(N, d));
-            System.out.println("Maximum A2A total throughput per node: " + maxThroughputPerNode(N, d));
-            System.out.println("Maximum A2A total throughput per server: " + maxThroughputPerServer(N, d, serversPerSwitch));
-        }
+        System.out.println(avgPathLengthMinBound(128, 8));
+        System.out.println(maxThroughputPerNode(128, 8));
+        System.out.println(maxThroughputPerServer(128, 8, 6));
     }
 
     /**
      * Compute the average path length minimum bound for any possible
      * (bi-directional) graph of N nodes, with each node having degree d.
      *
+     * Based on (the authors of the 1974 paper are not associated in any way with the implementation in this file):
+     *
+     *   Vinton G Cerf, Donald D Cowan, RC Mullin, and RG Stanton. A lower
+     *   bound on the average shortest path length in regular graphs. Networks,
+     *   4(4):335–342, 1974.
+     *
      * @param N     Number of nodes
      * @param d     Degree of each node
      *
      * @return  Minimum average path length bound
      */
-    public static double avgPathLengthMinBound(int N, int d) {
+    public static double avgPathLengthMinBound(int N, double d) {
 
         // Find maximum k for which inequality R >= 0 holds
         double R = -1, curR = 0.0;
@@ -62,8 +63,8 @@ public class BoundsCalculator {
 
         // Calculate average path length min. bound
         double sum = k * R;
-        for (int j = 1; j <= k - 1; j++){
-            sum += j * d * (int)Math.pow(d - 1, j - 1);
+        for (int j = 1; j <= k - 1; j++) {
+            sum += j * d * Math.pow(d - 1, j - 1);
         }
         sum /= (double) (N - 1);
 
@@ -71,12 +72,12 @@ public class BoundsCalculator {
 
     }
 
-    public static double maxThroughputPerNode(int N, int d) {
-        return ((double) d) / (avgPathLengthMinBound(N, d));
+    public static double maxThroughputPerNode(int N, double d) {
+        return d / avgPathLengthMinBound(N, d);
     }
 
-    public static double maxThroughputPerServer(int N, int d, int serversPerSwitch) {
-        return ((double) d) / (avgPathLengthMinBound(N, d) * serversPerSwitch);
+    public static double maxThroughputPerServer(int N, double d, int serversPerSwitch) {
+        return d / (avgPathLengthMinBound(N, d) * serversPerSwitch);
     }
 
 }

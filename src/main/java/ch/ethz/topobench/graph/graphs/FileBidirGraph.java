@@ -30,11 +30,13 @@ public class FileBidirGraph extends Graph {
      * TODO: This is out of date, for example it should be possible to
      * TODO: to specify node weights. Also to read the n from file.
      *
-     * @param n         Number of nodes in the graph
-     * @param filename  File name
+     * @param n             Number of nodes in the graph
+     * @param partSwitches  Participating switches, implying interval of identifiers [0, partSwitches)
+     *                      Each receives a single server
+     * @param filename      File name
      */
-    public FileBidirGraph(int n, String filename) {
-        super("file", n, 1);
+    public FileBidirGraph(int n, int partSwitches, String filename) {
+        super("file", n, 0);
 
         try {
 
@@ -73,6 +75,11 @@ public class FileBidirGraph extends Graph {
 
             // Close input stream
             br.close();
+
+            // Set weight non-zero only for leaf nodes
+            for (int i = 0; i < partSwitches; i++) {
+                this.setNodeWeight(i, 1);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

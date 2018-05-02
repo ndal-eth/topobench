@@ -7,6 +7,8 @@
 
 package ch.ethz.topobench.graph.print;
 
+import ch.ethz.topobench.Main;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 
@@ -29,6 +31,7 @@ public class PrinterRun {
             for (int i = 0; i < args.length; i += 2) {
                 out.write(args[i] + " " + args[i + 1] + "\n");
             }
+            out.write("-seed " + Main.getRandomSeed());
 
             // Close output stream
             out.close();

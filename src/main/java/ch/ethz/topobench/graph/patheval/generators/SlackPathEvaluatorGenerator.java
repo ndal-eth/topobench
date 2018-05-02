@@ -36,6 +36,8 @@ public class SlackPathEvaluatorGenerator implements PathEvaluatorGenerator {
             slack = 1000000;
         }
 
+        System.out.println("> Slack (1000000 is practical infinite): " + slack);
+
         // Create path evaluator
         return new SelectorResult<>(new SlackPathEvaluator(graph, slack), cmd.getArgs());
 

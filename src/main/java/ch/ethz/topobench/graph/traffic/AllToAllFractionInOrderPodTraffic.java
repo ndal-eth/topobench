@@ -19,16 +19,34 @@ import java.util.List;
  * This is deterministically done, because it assumes it takes the fraction linearly with the indexes.
  *
  * Within the selected fraction of nodes, every server in each node sends
- * to all servers in the fraction (excluding servers attached to its own node).
+ * to all servers in the fraction (excluding servers attached to its own node and to servers in its own pod).
  */
-public class AllToAllFractionInOrderTraffic extends Traffic {
+public class AllToAllFractionInOrderPodTraffic extends Traffic {
 
+    private final int perPod;
     private final double fraction;
 
-    public AllToAllFractionInOrderTraffic(Graph graph, double fraction) {
+    public AllToAllFractionInOrderPodTraffic(Graph graph, int perPod, double fraction) {
         super(graph);
+        this.perPod = perPod;
         this.fraction = fraction;
         ensureNodesWithWeightAreUniform();
+    }
+
+    /**
+     * Find the pod for the corresponding node identifier.
+     *
+     * @param x     Node identifier
+     *
+     * @return  Pod it belongs to
+     */
+    private int findPod(int x) {
+        for (int i = x ; i >= 0; i--) {
+            if (i % perPod == 0) {
+                return i;
+            }
+        }
+        throw new RuntimeException("Could not find pod; presumably because x=" + x + " was negative.");
     }
 
     @Override
@@ -47,7 +65,7 @@ public class AllToAllFractionInOrderTraffic extends Traffic {
                 int toSwitch = nodesWithWeight.get(j);
 
                 // Cannot have traffic on the same switch
-                if (fromSwitch == toSwitch) {
+                if (findPod(fromSwitch) == findPod(toSwitch)) {
                     continue;
                 }
 
@@ -62,7 +80,7 @@ public class AllToAllFractionInOrderTraffic extends Traffic {
         }
 
         // Log creation
-        System.out.println(" > Generated All-to-All ordered server traffic pairs");
+        System.out.println(" > Generated All-to-All ordered server pod traffic pairs");
         System.out.println(" > An ordered fraction " + (int) (100.0 * fraction) + "% of " + numNodesWithWeight + " weighed nodes was selected");
         System.out.println(" > The node fraction is thus of size: " + fractionSize + " nodes.");
         System.out.println(" > Among these a total of " + ls.size() + " server pairs were ultimately generated.");

@@ -20,6 +20,7 @@ public class TrafficSelector {
         ALL_TO_ALL,
         ALL_TO_ALL_FRAC,
         ALL_TO_ALL_FRAC_ORDER,
+        ALL_TO_ALL_FRAC_POD_ORDER,
         ALL_TO_ONE,
         STRIDE,
         MIN_WEIGHT_PAIRS,
@@ -38,6 +39,7 @@ public class TrafficSelector {
             case ALL_TO_ALL:                return "ATA";
             case ALL_TO_ALL_FRAC:           return "ATAF";
             case ALL_TO_ALL_FRAC_ORDER:     return "ATAFO";
+            case ALL_TO_ALL_FRAC_POD_ORDER: return "ATAFPO";
             case ALL_TO_ONE:                return "AT1";
             case STRIDE:                    return "STR";
             case RAND_PERM_PAIRS:           return "RPP";
@@ -56,15 +58,16 @@ public class TrafficSelector {
      */
     public static TrafficMode getTrafficMode(String i) {
         switch (i) {
-            case "RPP":   return RAND_PERM_PAIRS;
-            case "ATA":   return ALL_TO_ALL;
-            case "ATAF":  return ALL_TO_ALL_FRAC;
-            case "ATAFO": return ALL_TO_ALL_FRAC_ORDER;
-            case "AT1":   return ALL_TO_ONE;
-            case "STR":   return STRIDE;
-            case "MIWP":  return MIN_WEIGHT_PAIRS;
-            case "MAWP":  return MAX_WEIGHT_PAIRS;
-            default:      return null;
+            case "RPP":    return RAND_PERM_PAIRS;
+            case "ATA":    return ALL_TO_ALL;
+            case "ATAF":   return ALL_TO_ALL_FRAC;
+            case "ATAFO":  return ALL_TO_ALL_FRAC_ORDER;
+            case "ATAFPO": return ALL_TO_ALL_FRAC_POD_ORDER;
+            case "AT1":    return ALL_TO_ONE;
+            case "STR":    return STRIDE;
+            case "MIWP":   return MIN_WEIGHT_PAIRS;
+            case "MAWP":   return MAX_WEIGHT_PAIRS;
+            default:       return null;
         }
     }
 
@@ -83,6 +86,7 @@ public class TrafficSelector {
             case ALL_TO_ALL:                return new AllToAllTrafficGenerator().generate(graph, remainingArgs);
             case ALL_TO_ALL_FRAC:           return new AllToAllFractionTrafficGenerator().generate(graph, remainingArgs);
             case ALL_TO_ALL_FRAC_ORDER:     return new AllToAllFractionInOrderTrafficGenerator().generate(graph, remainingArgs);
+            case ALL_TO_ALL_FRAC_POD_ORDER: return new AllToAllFractionInOrderPodTrafficGenerator().generate(graph, remainingArgs);
             case ALL_TO_ONE:                return new AllToOneTrafficGenerator().generate(graph, remainingArgs);
             case STRIDE:                    return new StrideTrafficGenerator().generate(graph, remainingArgs);
             case RAND_PERM_PAIRS:           return new RandomPermPairsTrafficGenerator().generate(graph, remainingArgs);

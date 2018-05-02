@@ -9,10 +9,7 @@ package ch.ethz.topobench.graph.graphs;
 
 import ch.ethz.topobench.graph.Graph;
 import ch.ethz.topobench.graph.SelectorResult;
-import ch.ethz.topobench.graph.graphs.generators.FatTreeSigcommGenerator;
-import ch.ethz.topobench.graph.graphs.generators.RandomRegularGraphGenerator;
-import ch.ethz.topobench.graph.graphs.generators.TwoPartRRGraphGenerator;
-import ch.ethz.topobench.graph.graphs.generators.XpanderGraphGenerator;
+import ch.ethz.topobench.graph.graphs.generators.*;
 
 import static ch.ethz.topobench.graph.graphs.GraphSelector.Type.*;
 
@@ -22,7 +19,8 @@ public class GraphSelector {
         RANDOM_REGULAR_GRAPH,
         FAT_TREE,
         XPANDER,
-        TWO_PART_RR_GRAPH
+        TWO_PART_RR_GRAPH,
+        FROM_FILE
     }
 
     /**
@@ -38,6 +36,7 @@ public class GraphSelector {
             case FAT_TREE:              return "FT";
             case XPANDER:               return "XP";
             case TWO_PART_RR_GRAPH:     return "TPRR";
+            case FROM_FILE:             return "FILE";
             default:                    throw new RuntimeException("GraphSelector: getGraphTypeRepresentation: cannot select illegal graph type");
         }
     }
@@ -55,6 +54,7 @@ public class GraphSelector {
             case "FT":   return FAT_TREE;
             case "XP":   return XPANDER;
             case "TPRR": return TWO_PART_RR_GRAPH;
+            case "FILE": return FROM_FILE;
             default: return null;
         }
     }
@@ -74,6 +74,7 @@ public class GraphSelector {
             case XPANDER: return new XpanderGraphGenerator().generate(remainingArgs);
             case FAT_TREE: return new FatTreeSigcommGenerator().generate(remainingArgs);
             case TWO_PART_RR_GRAPH: return new TwoPartRRGraphGenerator().generate(remainingArgs);
+            case FROM_FILE: return new FromFileGraphGenerator().generate(remainingArgs);
             default: throw new RuntimeException("GraphTypeSelector: select: cannot select illegal graph type");
         }
 
