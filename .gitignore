@@ -4,3 +4,4 @@ target/
 gurobi.log
 run.config
 TopoBench.iml
+TopoBench.jar
