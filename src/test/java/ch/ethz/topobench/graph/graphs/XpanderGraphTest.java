@@ -24,8 +24,8 @@ public class XpanderGraphTest {
         testConstruction(6, 1, 180);
         testConstruction(9, 2, 90);
         testConstruction(18, 1, 456);
-        testConstruction(20, 4, 777);
-        testConstruction(17, 1, 5737);
+        //testConstruction(20, 4, 777);
+        //testConstruction(17, 1, 5737);
         // Takes too long: testConstruction(56, 3, 9986);
     }
 

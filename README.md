@@ -17,7 +17,7 @@ With these three component parameters, the framework calculates the following: g
 
 * **Gurobi:** Our code uses the Gurobi solver (http://www.gurobi.com/) which is available for free to academics. It can be swapped with any linear program solver, although this requires significant effort in rewriting both scripts and java code (especially the analysis tools offered). After installation, please ensure that you can globally run it from the command line as `gurobi_cl <a linear program.lp>`. It is also possible to run it on a remote server by swapping `localLpRun.sh` for `remoteLpRun.sh` in your script (be sure to edit `remoteLpRun.sh` to your own setup).
 
-* **Python:** Some functionality (e.g. maximum weight matching, Xpander graph generation) uses Python. Both Python 2 and 3 are supported. Be sure you can globally run `python <some python script.py>`, and have the modules *networkx* and *numpy* installed with your respective distribution.
+* **Python:** Some functionality (e.g. maximum weight matching, Xpander graph generation) uses Python. Both Python 2 and 3 are supported. Be sure you can globally run `python <some python script.py>`, and have the modules *networkx-version-1.11* and *numpy* installed with your respective distribution. Particularly you must do: `sudo pip install networkx==1.11` because networkx has broken backwards in its 2.x release.
 
 * **Gnuplot:** Some scripts have been written to nicely plot results. This is not a required dependency. Be sure you can globally run `gnuplot <some plot script.plt>`. Preferably version 4.4 or higher.
 
